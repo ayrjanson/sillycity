@@ -22,15 +22,6 @@ struct ContentView: View {
             
             VStack(spacing:20) {
                 Spacer()
-                Button(action:{
-                    withAnimation(.spring()) {
-                        isShowing.toggle()
-                        print(appInfo.isTitleViewShowing)
-                    }
-                }, label: {
-                    Image(systemName: "list.bullet")
-                        .foregroundColor(.white)
-                })//.position(x: isShowing ? 500 : 70, y: 30)
                 HStack(spacing: 5) {
                     //Text(String(appInfo.myState.curCul))
                     Spacer()

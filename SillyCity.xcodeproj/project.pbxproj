@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		85AB752E28067F0E00B1FC62 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AB752D28067F0E00B1FC62 /* SideMenu.swift */; };
 		85D488BB28028C2200A8E3B5 /* SillyCityApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D488BA28028C2200A8E3B5 /* SillyCityApp.swift */; };
 		85D488BD28028C2200A8E3B5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D488BC28028C2200A8E3B5 /* ContentView.swift */; };
 		85D488BF28028C2500A8E3B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D488BE28028C2500A8E3B5 /* Assets.xcassets */; };
@@ -21,7 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		85AB752D28067F0E00B1FC62 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		85D488B728028C2200A8E3B5 /* SillyCity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SillyCity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D488BA28028C2200A8E3B5 /* SillyCityApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SillyCityApp.swift; sourceTree = "<group>"; };
 		85D488BC28028C2200A8E3B5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 				85D488CF2802C56700A8E3B5 /* Defaults.plist */,
 				85D488CB2802A1D300A8E3B5 /* GameState.swift */,
 				85E21EFB28039A1A00B8C545 /* DeathScreen.swift */,
-				85AB752D28067F0E00B1FC62 /* SideMenu.swift */,
 				85AB752C28067EF100B1FC62 /* New Group */,
 				85E21EF7280395B500B8C545 /* TitleScreen.swift */,
 				85E21EF92803982B00B8C545 /* ProfileView.swift */,
@@ -170,7 +167,6 @@
 				85D488BD28028C2200A8E3B5 /* ContentView.swift in Sources */,
 				85D488CC2802A1D300A8E3B5 /* GameState.swift in Sources */,
 				85E21EF8280395B500B8C545 /* TitleScreen.swift in Sources */,
-				85AB752E28067F0E00B1FC62 /* SideMenu.swift in Sources */,
 				85E21EFC28039A1A00B8C545 /* DeathScreen.swift in Sources */,
 				85D488C928029E1200A8E3B5 /* Card.swift in Sources */,
 				85E21EFA2803982B00B8C545 /* ProfileView.swift in Sources */,
