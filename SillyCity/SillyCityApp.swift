@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct SillyCityApp: App {
+    @StateObject var appInfo = AppInformation()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(appInfo)
         }
     }
 }
