@@ -33,6 +33,7 @@ struct GameState {
         return false
     }
     
+    // This is a stupid comment
     mutating func createDeck() {
         let myCard1 = Card(id:2,nMil:25,pMil:-25,nPop: -25, pPop: 25, nCul: 0,pCul: 0,nMon: 0,pMon: 0, t:"") // Farmer
         let myCard2 = Card(id:3,nMil:-25,pMil:25,nPop: 25, pPop: -25, nCul: 0,pCul: 0,nMon: 0,pMon: 0, t:"") //
