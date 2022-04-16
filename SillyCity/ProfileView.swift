@@ -9,7 +9,8 @@ struct ProfileView: View {
             ZStack {
                 
                 // Background Color
-                LinearGradient(gradient: Gradient(colors: [Color.black, Color.gray]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
+                Color("Eggplant")
+                    .ignoresSafeArea()
                 
                 VStack {
                     // Profile Label

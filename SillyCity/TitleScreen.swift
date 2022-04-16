@@ -28,14 +28,22 @@ struct TitleScreen: View {
                 }
                 VStack {
                     if appInfo.isTitleViewShowing {
-                        Image("card2") // Make the "Silly City" logo
+                        Image("hoahavoc2")
+                            //.padding(EdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0))
+                            .resizable()
+                            .scaledToFit()
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        /*
                         Rectangle()
                             .padding(.top, -3.0)
                             .frame(width: 400.0, height: 150)
                             .opacity(0)
-                        
+                         */
+                        Spacer()
+                        Spacer()
                         Text("Start!")
-                            .font(.system(size: 25, weight: .heavy, design: .rounded))
+                            //.font(.system(size: 25, weight: .heavy, design: .rounded))
+                            .font(.system(size: 25, weight: .light, design: .serif))
                             .padding()
                             .frame(width: 190, height: 50)
                             .background(Color("Eggshell"))
@@ -44,6 +52,9 @@ struct TitleScreen: View {
                             .onTapGesture {
                                 withAnimation {
                                     appInfo.isTitleViewShowing.toggle()
+                                    if(appInfo.isDeathScreen){
+                                    appInfo.isDeathScreen.toggle()
+                                    }
                                 }
                             }
                         
@@ -55,7 +66,8 @@ struct TitleScreen: View {
                                     Image(systemName: "person")
                                         .frame(width: 25, height: 25)
                                     Text("Profile")
-                                        .font(.system(size: 25, weight: .heavy))
+                                    //.font(.system(size: 25, weight: .heavy))
+                                        .font(.system(size: 25, weight: .light, design: .serif))
                                 }
                                 .frame(width: 160, height: 20)
                                 .foregroundColor(Color("Eggshell"))
@@ -64,9 +76,9 @@ struct TitleScreen: View {
                                 .cornerRadius(10)
                                 //.navigationBarTitle("<< Back")
                             })
+                        Spacer()
                     }
                 }
-            
             }
         }
     }
