@@ -12,7 +12,10 @@ struct ContentView: View {
     @State private var curCard = 0
     @State private var score = 0
     @State private var isShowing = false
+    @GestureState private var dragOffset = CGSize.zero
+    
     var body: some View {
+        ZStack {
     ZStack {
         ZStack{
             Color("Eggplant")
@@ -27,39 +30,77 @@ struct ContentView: View {
                     Spacer()
                         .padding(.vertical, 20)
                         .padding(.horizontal, 20)
-                    Image("card2")
+                    Image("power" + String(appInfo.myState.curPow))
                         .resizable(capInsets: EdgeInsets(),resizingMode: .stretch)
                         //.padding(.horizontal, 5) //Original padding: 30
                         .frame(width: 90, height: 90, alignment: .center)
                         //.border(.red)
                     //Text(String(appInfo.myState.curMil))
-                    Image("card3")
+                    Image("land" + String(appInfo.myState.curLand)) //Replace with Land
                         .resizable(capInsets: EdgeInsets(),resizingMode: .stretch)
-                        //.padding(.horizontal, 5) //Original padding: 30
                         .frame(width: 90, height: 90, alignment: .center)
                     //Text(String(appInfo.myState.curMon))
-                    Image("card4")
+                    Image("pop" + String(appInfo.myState.curPop)) // Replace with Popularity
                         .resizable(capInsets: EdgeInsets(),resizingMode: .stretch)
-                        //.padding(.horizontal, 5) //Original padding: 30
                         .frame(width: 90, height: 90, alignment: .center)
                     //Text(String(appInfo.myState.curPop))
-                    Image("card5")
+                    Image("money" + String(appInfo.myState.curMon)) // Replace with Money
                         .resizable(capInsets: EdgeInsets(),resizingMode: .stretch)
-                        //.padding(.horizontal, 5) //Original padding: 30
                         .frame(width: 90, height: 90, alignment: .center)
                     Spacer()
                         .padding(.vertical, 20)
                         .padding(.horizontal, 20)
                 }
-                Text("This is a text box")
+                
+                /*
+                HStack(spacing: 5) {
+                    Text(String(appInfo.myState.curPow))
+                    Text(String(appInfo.myState.curPop))
+                    Text(String(appInfo.myState.curPop))
+                    Text(String(appInfo.myState.curMon))
+                }
+                */
+                
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(Color("DeepTaupe"))
+                        //.frame(width: 100, height: 30)
+                        //.cornerRadius(10)
+                        //.padding(.trailing, 190.0)
+                    ScrollView(.vertical) {
+                        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at efficitur ex. Ut id fringilla augue. Donec sit amet auctor nulla. Integer aliquet nisi ipsum, ut sagittis quam scelerisque ")
+                            .font(.system(size: 25, weight: .light, design: .serif))
+                            .foregroundColor(Color("Eggshell"))
+                            .multilineTextAlignment(.center)
+                            .lineSpacing(1)
+                            .frame(width:380)
+                    }
+                }
                 Spacer()
-                Image("card" + String(appInfo.myState.cardList[curCard].imgID))
+                Spacer()
+                
+                // THIS IS THE ACTUAL PICTURE
+                
+                Image("hoahavoc2")
+                    .resizable()
+                    .scaledToFit()
+                    .offset(x: dragOffset.width, y: dragOffset.height)
+                    .animation(.easeInOut, value: dragOffset)
+                    .gesture(
+                        DragGesture()
+                            .updating($dragOffset, body: { (value, state, transaction) in
+                                state = value.translation
+                            }))
+                
+                    //.position(imageLocation)
+                    //.gesture(DragGesture().onChanged({value in
+                    //}))
                 Spacer()
                 
                 HStack {
                     Button(action: {
-                        appInfo.myState.curCul += appInfo.myState.cardList[curCard].posCul
-                        appInfo.myState.curMil += appInfo.myState.cardList[curCard].posMil
+                        appInfo.myState.curLand += appInfo.myState.cardList[curCard].posLand
+                        appInfo.myState.curPow += appInfo.myState.cardList[curCard].posPow
                         appInfo.myState.curPop += appInfo.myState.cardList[curCard].posPop
                         appInfo.myState.curMon += appInfo.myState.cardList[curCard].posMon
                         
@@ -80,12 +121,19 @@ struct ContentView: View {
                         }
                         
                     }) {
-                        Text("yes")
+                        Text("Yes")
                             .padding(.horizontal, 30)
+                            .font(.system(size: 25, weight: .bold, design: .serif))
+                            .padding()
+                            .frame(width: 190, height: 50)
+                            .background(Color("Eggshell"))
+                            .cornerRadius(10)
+                            .foregroundColor(Color("SteelTeal"))
                     }
+                    
                     Button(action: {
-                        appInfo.myState.curCul += appInfo.myState.cardList[curCard].negCul
-                        appInfo.myState.curMil += appInfo.myState.cardList[curCard].negMil
+                        appInfo.myState.curLand += appInfo.myState.cardList[curCard].negLand
+                        appInfo.myState.curPow += appInfo.myState.cardList[curCard].negPow
                         appInfo.myState.curPop += appInfo.myState.cardList[curCard].negPop
                         appInfo.myState.curMon += appInfo.myState.cardList[curCard].negMon
                         if(appInfo.myState.gameOver()) {
@@ -106,21 +154,34 @@ struct ContentView: View {
                         }
                         
                     }) {
-                        Text("no")
+                        Text("No")
                             .padding(.horizontal, 30)
+                            .font(.system(size: 25, weight: .bold, design: .serif))
+                            .padding()
+                            .frame(width: 190, height: 50)
+                            .background(Color("Eggshell"))
+                            .cornerRadius(10)
+                            .foregroundColor(Color("SteelTeal"))
                     }
                 }
                 Spacer()
                 Text("Score: " + String(score))
                     .padding(.vertical, 100)
+                    .font(.system(size: 25, weight: .bold, design: .serif))
+                    .padding()
+                    .frame(width: 190, height: 50)
+                    .background(Color("Eggshell"))
+                    .cornerRadius(10)
+                    .foregroundColor(Color("SteelTeal"))
             }
             
         }
-        if appInfo.isTitleViewShowing {
-            TitleScreen()
-        }
         if appInfo.isDeathScreen {
             DeathScreen()
+        }
+    }
+        if appInfo.isTitleViewShowing {
+            TitleScreen()
         }
     }
     }

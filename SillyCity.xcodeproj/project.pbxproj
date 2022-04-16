@@ -44,13 +44,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		85AB752C28067EF100B1FC62 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		85D488AE28028C2200A8E3B5 = {
 			isa = PBXGroup;
 			children = (
@@ -73,7 +66,6 @@
 				85D488CF2802C56700A8E3B5 /* Defaults.plist */,
 				85D488CB2802A1D300A8E3B5 /* GameState.swift */,
 				85E21EFB28039A1A00B8C545 /* DeathScreen.swift */,
-				85AB752C28067EF100B1FC62 /* New Group */,
 				85E21EF7280395B500B8C545 /* TitleScreen.swift */,
 				85E21EF92803982B00B8C545 /* ProfileView.swift */,
 				85D488C828029E1200A8E3B5 /* Card.swift */,

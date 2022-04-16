@@ -31,10 +31,9 @@ struct DeathScreen: View {
                             .onTapGesture {
                                 withAnimation {
                                     appInfo.isTitleViewShowing.toggle()
-                                    appInfo.isDeathScreen.toggle()
                                 }
                             }
-                        Text("Play Again")
+                        Text("PlayAgain")
                             .font(.system(size: 25, weight: .heavy, design: .rounded))
                             .padding()
                             .frame(width: 190, height: 50)
@@ -46,9 +45,6 @@ struct DeathScreen: View {
                                     appInfo.isDeathScreen.toggle()
                                 }
                             }
-                        
-                        
-                        
                     }
                 }
             

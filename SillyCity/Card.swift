@@ -10,8 +10,8 @@ struct Card {
     let imgID: Int
     // integers representing changes in military
     // neg denotes "no" was chosen, pos denotes "yes" was chosen
-    let negMil: Int
-    let posMil: Int
+    let negPow: Int
+    let posPow: Int
     
     // integers representing changes in military
     // neg denotes "no" was chosen, pos denotes "yes" was chosen
@@ -20,8 +20,8 @@ struct Card {
     
     // integers representing changes in military
     // neg denotes "no" was chosen, pos denotes "yes" was chosen
-    let negCul: Int
-    let posCul: Int
+    let negLand: Int
+    let posLand: Int
     
     // integers representing changes in military
     // neg denotes "no" was chosen, pos denotes "yes" was chosen
@@ -32,16 +32,16 @@ struct Card {
     let text: String
     
     // Constructor
-    init(id: Int, nMil: Int, pMil: Int,nPop: Int, pPop: Int, nCul: Int, pCul: Int, nMon: Int, pMon: Int, t:String) {
+    init(id: Int, nPow: Int, yPow: Int,nPop: Int, yPop: Int, nLand: Int, yLand: Int, nMon: Int, yMon: Int, t:String) {
         self.imgID = id
-        self.negMil = nMil
-        self.posMil = pMil
-        self.negCul = nCul
-        self.posCul = pCul
+        self.negPow = nPow
+        self.posPow = yPow
+        self.negLand = nLand
+        self.posLand = yLand
         self.negPop = nPop
-        self.posPop = pPop
+        self.posPop = yPop
         self.negMon = nMon
-        self.posMon = pMon
+        self.posMon = yMon
         self.text = t
     }
     
