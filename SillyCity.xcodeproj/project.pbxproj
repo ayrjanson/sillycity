@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851A063A280B61B700B53EC9 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851A0639280B61B700B53EC9 /* SwiftUIView.swift */; };
 		85D488BB28028C2200A8E3B5 /* SillyCityApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D488BA28028C2200A8E3B5 /* SillyCityApp.swift */; };
 		85D488BD28028C2200A8E3B5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D488BC28028C2200A8E3B5 /* ContentView.swift */; };
 		85D488BF28028C2500A8E3B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D488BE28028C2500A8E3B5 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		851A0639280B61B700B53EC9 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		85D488B728028C2200A8E3B5 /* SillyCity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SillyCity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D488BA28028C2200A8E3B5 /* SillyCityApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SillyCityApp.swift; sourceTree = "<group>"; };
 		85D488BC28028C2200A8E3B5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				85D488BC28028C2200A8E3B5 /* ContentView.swift */,
 				85D488BE28028C2500A8E3B5 /* Assets.xcassets */,
 				85D488C028028C2500A8E3B5 /* Preview Content */,
+				851A0639280B61B700B53EC9 /* SwiftUIView.swift */,
 			);
 			path = SillyCity;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			files = (
 				85D488BD28028C2200A8E3B5 /* ContentView.swift in Sources */,
 				85D488CC2802A1D300A8E3B5 /* GameState.swift in Sources */,
+				851A063A280B61B700B53EC9 /* SwiftUIView.swift in Sources */,
 				85E21EF8280395B500B8C545 /* TitleScreen.swift in Sources */,
 				85E21EFC28039A1A00B8C545 /* DeathScreen.swift in Sources */,
 				85D488C928029E1200A8E3B5 /* Card.swift in Sources */,
@@ -291,6 +295,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SillyCity/Preview Content\"";
+				DEVELOPMENT_TEAM = HRWU2MK5JY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -319,6 +324,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SillyCity/Preview Content\"";
+				DEVELOPMENT_TEAM = HRWU2MK5JY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

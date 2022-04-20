@@ -7,13 +7,13 @@
 
 import SwiftUI
 
+// Main view of the game in progress, TitleScreen and DeathScreen are displayed on top
 struct ContentView: View {
     @EnvironmentObject var appInfo: AppInformation
     @State private var curCard = 0
     @State private var score = 0
     @State private var isShowing = false
     @GestureState private var dragOffset = CGSize.zero
-    
     var body: some View {
         ZStack {
     ZStack {
@@ -26,49 +26,34 @@ struct ContentView: View {
             VStack(spacing:20) {
                 Spacer()
                 HStack(spacing: 5) {
-                    //Text(String(appInfo.myState.curCul))
                     Spacer()
                         .padding(.vertical, 20)
                         .padding(.horizontal, 20)
-                    Image("power" + String(appInfo.myState.curPow))
-                        .resizable(capInsets: EdgeInsets(),resizingMode: .stretch)
-                        //.padding(.horizontal, 5) //Original padding: 30
-                        .frame(width: 90, height: 90, alignment: .center)
-                        //.border(.red)
-                    //Text(String(appInfo.myState.curMil))
-                    Image("land" + String(appInfo.myState.curLand)) //Replace with Land
+                    Image("power" + checkStatus(i :appInfo.myState.curPow)) //Power
                         .resizable(capInsets: EdgeInsets(),resizingMode: .stretch)
                         .frame(width: 90, height: 90, alignment: .center)
-                    //Text(String(appInfo.myState.curMon))
-                    Image("pop" + String(appInfo.myState.curPop)) // Replace with Popularity
+                    Image("land" + checkStatus(i :appInfo.myState.curLand)) //Land
                         .resizable(capInsets: EdgeInsets(),resizingMode: .stretch)
                         .frame(width: 90, height: 90, alignment: .center)
-                    //Text(String(appInfo.myState.curPop))
-                    Image("money" + String(appInfo.myState.curMon)) // Replace with Money
+                    Image("pop" + checkStatus(i :appInfo.myState.curPop)) //Popularity
+                        .resizable(capInsets: EdgeInsets(),resizingMode: .stretch)
+                        .frame(width: 90, height: 90, alignment: .center)
+                    Image("money" + checkStatus(i :appInfo.myState.curMon)) //Money
                         .resizable(capInsets: EdgeInsets(),resizingMode: .stretch)
                         .frame(width: 90, height: 90, alignment: .center)
                     Spacer()
                         .padding(.vertical, 20)
                         .padding(.horizontal, 20)
                 }
-                
-                /*
-                HStack(spacing: 5) {
-                    Text(String(appInfo.myState.curPow))
-                    Text(String(appInfo.myState.curPop))
-                    Text(String(appInfo.myState.curPop))
-                    Text(String(appInfo.myState.curMon))
-                }
-                */
                 
                 ZStack {
                     Rectangle()
                         .foregroundColor(Color("DeepTaupe"))
-                        //.frame(width: 100, height: 30)
-                        //.cornerRadius(10)
-                        //.padding(.trailing, 190.0)
+                        .frame(width: 380)
+                        .cornerRadius(10)
+                        
                     ScrollView(.vertical) {
-                        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at efficitur ex. Ut id fringilla augue. Donec sit amet auctor nulla. Integer aliquet nisi ipsum, ut sagittis quam scelerisque ")
+                        Text(appInfo.myState.cardList[curCard].text)
                             .font(.system(size: 25, weight: .light, design: .serif))
                             .foregroundColor(Color("Eggshell"))
                             .multilineTextAlignment(.center)
@@ -79,11 +64,10 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 
-                // THIS IS THE ACTUAL PICTURE
-                
-                Image("hoahavoc2")
+                Image("resident" + String(appInfo.myState.cardList[curCard].imgID % 4))
                     .resizable()
                     .scaledToFit()
+                    .cornerRadius(10)
                     .offset(x: dragOffset.width, y: dragOffset.height)
                     .animation(.easeInOut, value: dragOffset)
                     .gesture(
@@ -91,46 +75,9 @@ struct ContentView: View {
                             .updating($dragOffset, body: { (value, state, transaction) in
                                 state = value.translation
                             }))
-                
-                    //.position(imageLocation)
-                    //.gesture(DragGesture().onChanged({value in
-                    //}))
                 Spacer()
                 
                 HStack {
-                    Button(action: {
-                        appInfo.myState.curLand += appInfo.myState.cardList[curCard].posLand
-                        appInfo.myState.curPow += appInfo.myState.cardList[curCard].posPow
-                        appInfo.myState.curPop += appInfo.myState.cardList[curCard].posPop
-                        appInfo.myState.curMon += appInfo.myState.cardList[curCard].posMon
-                        
-                        if(appInfo.myState.gameOver()) {
-                            if(self.score > appInfo.highScore) {
-                                appInfo.highScore = self.score
-                            }
-                            appInfo.timesDied += 1
-                            self.score = 0
-                            curCard = 0
-                            sleep(1)
-                            appInfo.isDeathScreen.toggle()
-                            appInfo.myState.restart()
-                        }
-                        else {
-                        self.score += 1
-                        curCard += 1
-                        }
-                        
-                    }) {
-                        Text("Yes")
-                            .padding(.horizontal, 30)
-                            .font(.system(size: 25, weight: .bold, design: .serif))
-                            .padding()
-                            .frame(width: 190, height: 50)
-                            .background(Color("Eggshell"))
-                            .cornerRadius(10)
-                            .foregroundColor(Color("SteelTeal"))
-                    }
-                    
                     Button(action: {
                         appInfo.myState.curLand += appInfo.myState.cardList[curCard].negLand
                         appInfo.myState.curPow += appInfo.myState.cardList[curCard].negPow
@@ -145,9 +92,12 @@ struct ContentView: View {
                             curCard = 0
                             sleep(1)
                             appInfo.isDeathScreen.toggle()
-                            appInfo.myState.restart()
                         }
                         else {
+                            if(curCard >= appInfo.myState.cardList.count) {
+                                curCard = 0;
+                                self.appInfo.myState.cardList.shuffle();
+                            }
                         self.score += 1
                         curCard += 1
                         
@@ -158,21 +108,59 @@ struct ContentView: View {
                             .padding(.horizontal, 30)
                             .font(.system(size: 25, weight: .bold, design: .serif))
                             .padding()
-                            .frame(width: 190, height: 50)
+                            .frame(width: 185, height: 50)
                             .background(Color("Eggshell"))
                             .cornerRadius(10)
                             .foregroundColor(Color("SteelTeal"))
                     }
+                    
+                    Button(action: {
+                        appInfo.myState.curLand += appInfo.myState.cardList[curCard].posLand
+                        appInfo.myState.curPow += appInfo.myState.cardList[curCard].posPow
+                        appInfo.myState.curPop += appInfo.myState.cardList[curCard].posPop
+                        appInfo.myState.curMon += appInfo.myState.cardList[curCard].posMon
+                        
+                        if(appInfo.myState.gameOver()) {
+                            if(self.score > appInfo.highScore) {
+                                UserDefaults.standard.set(self.score, forKey: "highScore")
+                            }
+                            let newTimesDied = UserDefaults.standard.integer(forKey: "gamesPlayed") + 1
+                            UserDefaults.standard.set(newTimesDied,forKey: "gamesPlayed")
+                            self.score = 0
+                            curCard = 0
+                            //sleep(1)
+                            appInfo.isDeathScreen.toggle()
+                        }
+                        else {
+                            if(curCard >= appInfo.myState.cardList.count) {
+                                curCard = 0;
+                                appInfo.myState.cardList.shuffle();
+                            }
+                        self.score += 1
+                        curCard += 1
+                        }
+                        
+                    }) {
+                        Text("Yes")
+                            .padding(.horizontal, 30)
+                            .font(.system(size: 25, weight: .bold, design: .serif))
+                            .padding()
+                            .frame(width: 185, height: 50)
+                            .background(Color("SteelTeal"))
+                            .cornerRadius(10)
+                            .foregroundColor(Color("Eggshell"))
+                    }
+                    
                 }
                 Spacer()
-                Text("Score: " + String(score))
+                Text("Decisions: " + String(score))
                     .padding(.vertical, 100)
-                    .font(.system(size: 25, weight: .bold, design: .serif))
-                    .padding()
-                    .frame(width: 190, height: 50)
-                    .background(Color("Eggshell"))
+                    .font(.system(size: 25, weight: .semibold, design: .serif))
+                    .padding(.vertical, 20)
+                    .frame(width: 380, height: 50)
+                    .background(Color("Fogra"))
                     .cornerRadius(10)
-                    .foregroundColor(Color("SteelTeal"))
+                    .foregroundColor(Color("Eggshell"))
             }
             
         }
@@ -188,21 +176,43 @@ struct ContentView: View {
 
 }
 
-class AppInformation: ObservableObject{
-    @Published var myState = GameState()
-
-    @Published var highScore = 0
-    @Published var timesDied = 0
-    @Published var gameOver = false
-    @Published var username = UserDefaults.standard.string(forKey: "username")
-    @Published var gamesPlayed = UserDefaults.standard.integer(forKey: "gamesPlayed")
-    @Published var isTitleViewShowing = true
-    @Published var isDeathScreen = false
+// Function to display the correct status image for the statuses of the player
+func checkStatus(i : Int) -> String {
+    let quotient = Double(i / 10)
+    
+    if (quotient <= 0.0) {
+        return "0"
+    }
+    else if (0.0 < quotient && quotient < 1) {
+        return "10"
+    }
+    
+    else if (quotient >= 10.0) {
+        return "100"
+    }
+    
+    let toString = String(Int(floor(quotient)) * 10)
+    return toString
 }
 
 
+
+class AppInformation: ObservableObject{
+    @Published var myState = GameState()
+
+    @Published var highScore = UserDefaults.standard.integer(forKey: "highScore")
+    @Published var timesDied = UserDefaults.standard.integer(forKey: "gamesPlayed")
+    @Published var gameOver = false
+    @Published var username = UserDefaults.standard.string(forKey: "username")
+    @Published var isTitleViewShowing = true
+    @Published var isDeathScreen = false
+    
+}
+
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
         ContentView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
     }
 }

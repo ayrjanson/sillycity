@@ -2,10 +2,11 @@
 //  SillyCityApp.swift
 //  SillyCity
 //
-//  Created by Anna Yrjanson on 4/9/22.
+//  Created by Anna Yrjanson and John Nicholson on 4/9/22.
 //
 
 import SwiftUI
+
 
 @main
 struct SillyCityApp: App {
@@ -15,4 +16,6 @@ struct SillyCityApp: App {
             ContentView().environmentObject(appInfo)
         }
     }
+
 }
+
