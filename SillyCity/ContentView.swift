@@ -197,18 +197,26 @@ func checkStatus(i : Int) -> String {
 
 
 
+// Defines the app information variable to be used across Swift files
 class AppInformation: ObservableObject{
     @Published var myState = GameState()
 
+    // High score of the user (saved on app closure)
     @Published var highScore = UserDefaults.standard.integer(forKey: "highScore")
+    // Games played of the user (saved on app closure)
     @Published var timesDied = UserDefaults.standard.integer(forKey: "gamesPlayed")
+    // Checks if game is over
     @Published var gameOver = false
+    // Username of user (saved on app closure)
     @Published var username = UserDefaults.standard.string(forKey: "username")
+    
+    // Two bool variables that control the views
     @Published var isTitleViewShowing = true
     @Published var isDeathScreen = false
     
 }
 
+// Setups up the view that can be displayed while coding, not relevant to the projects
 struct ContentView_Previews: PreviewProvider {
     
     static var previews: some View {

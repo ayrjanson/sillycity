@@ -5,8 +5,12 @@
 //  Created by Anna Yrjanson and John Nicholson on 4/9/22.
 //
 
+// Card struct that holds the values it changes your power/popularity/landscaping/money values by
+// Also contains an image id and the text that is displayed
+
 struct Card {
     // id linked to image of the card
+    // There are four options for images, so the image is found using mod 4
     let imgID: Int
     // integers representing changes in military
     // neg denotes "no" was chosen, pos denotes "yes" was chosen

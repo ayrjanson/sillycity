@@ -47,7 +47,7 @@ struct GameState {
     /   Maybe a take a text file as an input to setup all the cards?
     /   Would seem cleaner, but would be just as messy conceptually
     /
-    /   Community roles based on mod 6
+    /   Community roles based on mod 4
     /   0. Farmer
     /   1. Carpenter
     /   2. Merchant
@@ -155,8 +155,6 @@ struct GameState {
         cardList.append(myCard46)
         cardList.append(myCard47)
         cardList.append(myCard48)
-        
-        
         
         // Shuffle the deck using built in shuffle feature from Swift
         cardList.shuffle()
